@@ -1,9 +1,14 @@
 import cv2
 import mss
 import numpy as np
-import pygetwindow as gw
 import time
 import threading
+import os
+
+try:
+    import pygetwindow as gw
+except ImportError:
+    gw = None
 import os
 
 class CaptureEngine:
@@ -16,6 +21,10 @@ class CaptureEngine:
         
     def _get_window_bbox(self, window_title="AnyDesk"):
         """Finds the window by title and returns its bounding box."""
+        if gw is None:
+            print("pygetwindow is not available on this platform.")
+            return None
+            
         try:
             windows = gw.getWindowsWithTitle(window_title)
             if not windows:
