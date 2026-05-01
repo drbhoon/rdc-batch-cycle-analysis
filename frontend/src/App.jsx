@@ -14,7 +14,7 @@ const BATCH_VOLUMES = [0.5, 0.75, 1.0, 1.25, 1.5, 2.0];
 function App() {
   const [isRecording, setIsRecording] = useState(false);
   const [statusMsg, setStatusMsg] = useState('System Ready');
-  const [backendUrl] = useState('http://localhost:8000');
+  const [backendUrl] = useState(import.meta.env.VITE_BACKEND_URL || 'http://localhost:8000');
   const [cycleData, setCycleData] = useState(null);
   const [isAnalyzing, setIsAnalyzing] = useState(false);
   const [batchVolume, setBatchVolume] = useState(0.5);
