@@ -1,0 +1,13 @@
+node_modules/
+__pycache__/
+*.pyc
+venv/
+env/
+.env
+dist/
+build/
+.DS_Store
+batch_cycle_recording.mp4
+*.mp4
+*.exe
+python-installer.exe
