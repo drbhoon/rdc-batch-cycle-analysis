@@ -7,7 +7,7 @@ import os
 import json
 
 from capture_engine import CaptureEngine
-from vision_pipeline import analyze_video, get_local_expert_timeline, save_local_expert_timeline
+from vision_pipeline import analyze_video
 from analyzer import full_analysis, BENCHMARKS
 from fault_engine import start_diagnosis, respond_to_diagnosis
 from vision_pipeline import SEQUENCE
@@ -165,22 +165,8 @@ async def get_settings():
     return {"steps": steps}
 
 # ─────────────────────────────────────────────────────────────────────────────
-# NEW: Local Expert Timeline Configuration
+# Local Expert Timeline functionality removed
 # ─────────────────────────────────────────────────────────────────────────────
-
-@app.get("/api/expert_timeline")
-async def get_expert_timeline():
-    """Fetch the Local Expert Opinion timeline configurations."""
-    timeline = get_local_expert_timeline()
-    return {"status": "success", "timeline": timeline}
-
-@app.post("/api/expert_timeline")
-async def update_expert_timeline(request: List[Dict]):
-    """Update the Local Expert Opinion timeline."""
-    success = save_local_expert_timeline(request)
-    if not success:
-        raise HTTPException(status_code=500, detail="Failed to save local expert timeline.")
-    return {"status": "success", "message": "Local Expert Opinion saved successfully."}
 
 # ─────────────────────────────────────────────────────────────────────────────
 # NEW: Fault Diagnosis — stateful interactive Q&A
